@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuToggle && navList) {
         mobileMenuToggle.addEventListener('click', function() {
             navList.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            
+            // Update ARIA attributes
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            
+            // Voorkom scrollen van de pagina wanneer het menu open is
+            document.body.classList.toggle('menu-open');
         });
     }
     
@@ -16,8 +24,41 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navList.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
         });
     });
+    
+    // Sluit het menu als er buiten geklikt wordt
+    document.addEventListener('click', function(e) {
+        if (navList.classList.contains('active') && 
+            !e.target.closest('.mobile-menu-toggle') && 
+            !e.target.closest('.nav-list')) {
+            navList.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        }
+    });
+    
+    // Header aanpassingen bij scrollen
+    const header = document.querySelector('.header');
+    let lastScrollPosition = 0;
+    
+    function handleHeaderOnScroll() {
+        const currentScrollPosition = window.scrollY;
+        
+        if (currentScrollPosition > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScrollPosition = currentScrollPosition;
+    }
+    
+    window.addEventListener('scroll', handleHeaderOnScroll);
     
     // Smooth scroll naar secties
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -31,8 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                const headerHeight = header.offsetHeight;
+                
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Offset voor de sticky header
+                    top: targetElement.offsetTop - headerHeight,
                     behavior: 'smooth'
                 });
             }
@@ -43,14 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function setActiveNavItem() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPosition = window.scrollY;
+        const headerHeight = header.offsetHeight;
         
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
+            const sectionTop = section.offsetTop - headerHeight - 20;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
             
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                document.querySelectorAll('.nav-list a').forEach(link => {
+                document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${sectionId}`) {
                         link.classList.add('active');
@@ -63,11 +107,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Luister naar scroll events voor actieve menu-items
     window.addEventListener('scroll', setActiveNavItem);
     
-    // Animaties toevoegen (kan later worden uitgebreid)
-    function initAnimations() {
-        // Hier kunnen later animaties worden toegevoegd
-        console.log('Animaties geïnitialiseerd');
-    }
-    
-    initAnimations();
+    // Voer de functie eenmaal uit bij het laden van de pagina
+    setActiveNavItem();
 });
+
+// Voeg CSS classe toe aan body om menu-scrolling te voorkomen
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        body.menu-open {
+            overflow: hidden;
+        }
+    </style>
+`);
