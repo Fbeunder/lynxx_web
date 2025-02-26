@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Donkere gradient achtergrond -->
+  <rect width="1600" height="900" fill="url(#paint0_linear)"/>
+  
+  <!-- Abstracte datalijnen -->
+  <path d="M0 400C200 380 400 450 600 400C800 350 1000 340 1200 300C1400 260 1600 290 1800 250" stroke="#0077CC" stroke-width="3" stroke-dasharray="10 5" opacity="0.5"/>
+  <path d="M0 450C200 420 400 480 600 440C800 400 1000 380 1200 350C1400 320 1600 350 1800 310" stroke="#00A0E9" stroke-width="2" stroke-dasharray="8 4" opacity="0.7"/>
+  <path d="M0 500C200 470 400 520 600 490C800 460 1000 450 1200 420C1400 390 1600 410 1800 380" stroke="#4FB3FF" stroke-width="2" stroke-dasharray="6 3" opacity="0.6"/>
+  
+  <!-- Gestileerde datapunten -->
+  <circle cx="200" cy="380" r="5" fill="#00A0E9"/>
+  <circle cx="400" cy="450" r="4" fill="#0077CC"/>
+  <circle cx="600" cy="400" r="6" fill="#4FB3FF"/>
+  <circle cx="800" cy="350" r="5" fill="#00A0E9"/>
+  <circle cx="1000" cy="340" r="4" fill="#0077CC"/>
+  <circle cx="1200" cy="300" r="6" fill="#4FB3FF"/>
+  <circle cx="1400" cy="260" r="5" fill="#00A0E9"/>
+  
+  <circle cx="200" cy="420" r="4" fill="#0077CC"/>
+  <circle cx="400" cy="480" r="5" fill="#00A0E9"/>
+  <circle cx="600" cy="440" r="4" fill="#4FB3FF"/>
+  <circle cx="800" cy="400" r="6" fill="#0077CC"/>
+  <circle cx="1000" cy="380" r="5" fill="#00A0E9"/>
+  <circle cx="1200" cy="350" r="4" fill="#4FB3FF"/>
+  <circle cx="1400" cy="320" r="6" fill="#0077CC"/>
+  
+  <circle cx="200" cy="470" r="6" fill="#4FB3FF"/>
+  <circle cx="400" cy="520" r="4" fill="#0077CC"/>
+  <circle cx="600" cy="490" r="5" fill="#00A0E9"/>
+  <circle cx="800" cy="460" r="4" fill="#4FB3FF"/>
+  <circle cx="1000" cy="450" r="6" fill="#0077CC"/>
+  <circle cx="1200" cy="420" r="5" fill="#00A0E9"/>
+  <circle cx="1400" cy="390" r="4" fill="#4FB3FF"/>
+  
+  <!-- Abstracte vormen voor transportthema -->
+  <rect x="100" y="600" width="120" height="40" rx="10" fill="#0077CC" opacity="0.2"/>
+  <rect x="300" y="620" width="140" height="30" rx="10" fill="#00A0E9" opacity="0.3"/>
+  <rect x="500" y="580" width="100" height="50" rx="10" fill="#4FB3FF" opacity="0.2"/>
+  <rect x="700" y="610" width="130" height="35" rx="10" fill="#0077CC" opacity="0.3"/>
+  <rect x="900" y="590" width="110" height="45" rx="10" fill="#00A0E9" opacity="0.2"/>
+  <rect x="1100" y="615" width="125" height="32" rx="10" fill="#4FB3FF" opacity="0.3"/>
+  <rect x="1300" y="595" width="115" height="42" rx="10" fill="#0077CC" opacity="0.2"/>
+  
+  <!-- Gradient definitie -->
+  <defs>
+    <linearGradient id="paint0_linear" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#003366"/>
+      <stop offset="1" stop-color="#001833"/>
+    </linearGradient>
+  </defs>
+</svg>
